@@ -7,7 +7,7 @@ int main(int argc , char *argv[])
 {
     int sock;
     struct sockaddr_in server;
-    char message[1000] , server_reply[2000], bye[100] = "bye";
+    char message[2000] , server_reply[2000], bye[100] = "bye";
      
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
@@ -51,14 +51,6 @@ int main(int argc , char *argv[])
 
             break;
         }
-        if( recv(sock , server_reply , 2000 , 0) < 0)
-        {
-            puts("recv failed");
-            break;
-        }
-         
-        puts("Server reply :");
-        puts(server_reply);
         bzero(message, 2000);
         bzero(server_reply, 2000);
     }
