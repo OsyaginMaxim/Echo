@@ -8,7 +8,7 @@ int main(int argc , char *argv[])
     int sock;
     struct sockaddr_in server;
     char message[2000] , server_reply[2000], bye[100] = "bye";
-	int portName = atoi(argv[1]);     
+    int portName = atoi(argv[1]);     
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
     if (sock == -1)
