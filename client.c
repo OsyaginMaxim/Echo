@@ -2,13 +2,13 @@
 #include <string.h>   
 #include <sys/socket.h>    
 #include <arpa/inet.h> 
- 
+#include <unistd.h>
 int main(int argc , char *argv[])
 {
     int sock;
     struct sockaddr_in server;
-    char message[1000] , server_reply[2000], bye[100] = "bye";
-     
+    char message[2000] , server_reply[2000], bye[100] = "bye";
+	int portName = atoi(argv[1]);     
     //Create socket
     sock = socket(AF_INET , SOCK_STREAM , 0);
     if (sock == -1)
@@ -17,9 +17,9 @@ int main(int argc , char *argv[])
     }
     puts("Socket created");
      
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_addr.s_addr = htonl(INADDR_ANY);
     server.sin_family = AF_INET;
-    server.sin_port = htons( 8888 );
+    server.sin_port = htons(portName);
  
     if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0)
     {
